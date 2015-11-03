@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wasai.bc.dao.VersionMapper" >
+  <resultMap id="BaseResultMap" type="com.wasai.bc.domain.Version" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="ver" property="ver" jdbcType="INTEGER" />
+    <result column="ver_string" property="verString" jdbcType="VARCHAR" />
+    <result column="os_require" property="osRequire" jdbcType="VARCHAR" />
+    <result column="logo" property="logo" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="last_modify_time" property="lastModifyTime" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, type, ver, ver_string, os_require, logo, url, description, status, last_modify_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from version
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from version
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wasai.bc.domain.Version" >
+    insert into version (id, type, ver, ver_string, 
+      os_require, logo, url, 
+      description, status, last_modify_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{ver,jdbcType=INTEGER}, #{verString,jdbcType=VARCHAR}, 
+      #{osRequire,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{lastModifyTime,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wasai.bc.domain.Version" >
+    insert into version
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="ver != null" >
+        ver,
+      </if>
+      <if test="verString != null" >
+        ver_string,
+      </if>
+      <if test="osRequire != null" >
+        os_require,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="lastModifyTime != null" >
+        last_modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="ver != null" >
+        #{ver,jdbcType=INTEGER},
+      </if>
+      <if test="verString != null" >
+        #{verString,jdbcType=VARCHAR},
+      </if>
+      <if test="osRequire != null" >
+        #{osRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="lastModifyTime != null" >
+        #{lastModifyTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wasai.bc.domain.Version" >
+    update version
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="ver != null" >
+        ver = #{ver,jdbcType=INTEGER},
+      </if>
+      <if test="verString != null" >
+        ver_string = #{verString,jdbcType=VARCHAR},
+      </if>
+      <if test="osRequire != null" >
+        os_require = #{osRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="lastModifyTime != null" >
+        last_modify_time = #{lastModifyTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wasai.bc.domain.Version" >
+    update version
+    set type = #{type,jdbcType=CHAR},
+      ver = #{ver,jdbcType=INTEGER},
+      ver_string = #{verString,jdbcType=VARCHAR},
+      os_require = #{osRequire,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      last_modify_time = #{lastModifyTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
